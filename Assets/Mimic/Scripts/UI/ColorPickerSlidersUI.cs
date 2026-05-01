@@ -3,13 +3,12 @@ using UnityEngine.UI;
 
 namespace Mimic.Scripts.UI
 {
-    public class ColorPickerUI : MonoBehaviour
+    // класс отвечает за 3 слайдера
+    public class ColorPickerSlidersUI : MonoBehaviour
     {
         [SerializeField] Slider hueSlider;
         [SerializeField] Slider saturationSlider;
         [SerializeField] Slider brightnessSlider;
-
-        [SerializeField] Image guessPreview;
 
         [SerializeField] Image huePreview;
         [SerializeField] Image saturationPreview;
@@ -19,21 +18,33 @@ namespace Mimic.Scripts.UI
 
         void Awake()
         {
-            G.ColorPickerUI = this;
-        }
-        void OnDestroy()
-        {
-            if (G.ColorPickerUI == this)
-            {
-                G.ColorPickerUI = null;
-            }
+            G.ColorPickerSlidersUI = this;
         }
 
         void Start()
         {
-            hueSlider.onValueChanged.AddListener(_ => UpdateColor());
-            saturationSlider.onValueChanged.AddListener(_ => UpdateColor());
-            brightnessSlider.onValueChanged.AddListener(_ => UpdateColor());
+            hueSlider.onValueChanged.AddListener(OnSliderChanged);
+            saturationSlider.onValueChanged.AddListener(OnSliderChanged);
+            brightnessSlider.onValueChanged.AddListener(OnSliderChanged);
+
+            UpdateColor();
+
+            if (G.RoundController != null)
+            {
+                G.RoundController.OnRoundStateChanged += HandleState;
+            }
+        }
+
+        void OnDestroy()
+        {
+            if (G.ColorPickerSlidersUI == this)
+            {
+                G.ColorPickerSlidersUI = null;
+            }
+            if (G.RoundController != null)
+            {
+                G.RoundController.OnRoundStateChanged -= HandleState;
+            }
         }
 
         public void SetInteractable(bool value)
@@ -45,10 +56,15 @@ namespace Mimic.Scripts.UI
 
         public void ResetPicker()
         {
-            hueSlider.value = 0;
-            saturationSlider.value = 0;
-            brightnessSlider.value = 0;
+            hueSlider.value = 0f;
+            saturationSlider.value = 1f;
+            brightnessSlider.value = 1f;
 
+            UpdateColor();
+        }
+
+        void OnSliderChanged(float _)
+        {
             UpdateColor();
         }
 
@@ -60,19 +76,28 @@ namespace Mimic.Scripts.UI
                 brightnessSlider.value
             );
 
-            guessPreview.color = CurrentColor;
+            G.GuessImageUI?.SetColor(CurrentColor);
 
             huePreview.color = Color.HSVToRGB(hueSlider.value, 1f, 1f);
+
             saturationPreview.color = Color.HSVToRGB(
                 hueSlider.value,
                 saturationSlider.value,
                 1f
             );
+
             brightnessPreview.color = Color.HSVToRGB(
                 hueSlider.value,
                 1f,
                 brightnessSlider.value
             );
+        }
+
+        void HandleState(RoundState state)
+        {
+            hueSlider.gameObject.SetActive(state == RoundState.Guessing);
+            saturationSlider.gameObject.SetActive(state == RoundState.Guessing);
+            brightnessSlider.gameObject.SetActive(state == RoundState.Guessing);
         }
     }
 }

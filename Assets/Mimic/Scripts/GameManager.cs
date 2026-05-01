@@ -5,10 +5,18 @@ namespace Mimic.Scripts
 {
     public class GameManager : MonoBehaviour
     {
+        public System.Action<float> OnScoreChanged;
+
         [SerializeField] GameSettings settings;
         [SerializeField] Image targetPreview;
 
         Color _targetColor;
+        float _score;
+        
+        void Awake()
+        {
+            G.GameManager = this;
+        }
 
         void Start()
         {
@@ -22,6 +30,10 @@ namespace Mimic.Scripts
             {
                 G.RoundController.OnRoundStateChanged -= HandleRoundStateChanged;
             }
+            if (G.GameManager == this)
+            {
+                G.GameManager = null;
+            }
         }
 
         void HandleRoundStateChanged(RoundState state)
@@ -33,11 +45,13 @@ namespace Mimic.Scripts
                     break;
 
                 case RoundState.Guessing:
-                    G.ColorPickerUI.SetInteractable(true);
+                    G.ColorPickerSlidersUI.SetInteractable(true);
                     break;
 
                 case RoundState.Calculating:
-                    G.ColorPickerUI.SetInteractable(false);
+                    G.ColorPickerSlidersUI.SetInteractable(false);
+                    CalculateRoundScore();
+                    OnScoreChanged?.Invoke(_score);
                     break;
             }
         }
@@ -46,8 +60,18 @@ namespace Mimic.Scripts
         {
             _targetColor = settings.GenerateTargetColor();
             targetPreview.color = _targetColor;
+            G.TargetFinalImageUI.SetColor(_targetColor);
 
-            G.ColorPickerUI.ResetPicker();
+            G.ColorPickerSlidersUI.ResetPicker();
+        }
+
+        void CalculateRoundScore()
+        {
+            Color guessColor = G.ColorPickerSlidersUI.CurrentColor;
+
+            _score = Utils.CalculateScore(_targetColor, guessColor);
+
+            Debug.Log($"Score: {_score:0}");
         }
     }
 }

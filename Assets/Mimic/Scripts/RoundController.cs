@@ -13,6 +13,7 @@ namespace Mimic.Scripts
 
     public class RoundController : MonoBehaviour
     {
+        public System.Action<float> OnTimerProgressChanged;
         public System.Action<RoundState> OnRoundStateChanged;
 
         [SerializeField] GameSettings gameSettings;
@@ -69,10 +70,10 @@ namespace Mimic.Scripts
             {
                 SetState(RoundState.Showing);
                 _continueRequested = false;
-                yield return new WaitForSeconds(gameSettings.showTime);
+                yield return WaitWithProgress(gameSettings.showTime);
 
                 SetState(RoundState.Guessing);
-                yield return new WaitForSeconds(gameSettings.guessTime);
+                yield return WaitWithProgress(gameSettings.guessTime);
 
                 SetState(RoundState.Calculating);
 
@@ -81,6 +82,23 @@ namespace Mimic.Scripts
                     yield return null;
                 }
             }
+        }
+
+        IEnumerator WaitWithProgress(float duration)
+        {
+            float elapsed = 0f;
+
+            while (elapsed < duration)
+            {
+                elapsed += Time.deltaTime;
+
+                float progress = 1f - Mathf.Clamp01(elapsed / duration);
+                OnTimerProgressChanged?.Invoke(progress);
+
+                yield return null;
+            }
+
+            OnTimerProgressChanged?.Invoke(0f);
         }
 
         void SetState(RoundState newState)
