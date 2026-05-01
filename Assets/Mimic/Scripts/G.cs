@@ -7,7 +7,7 @@ namespace Mimic.Scripts
         public static GameManager GameManager;
         public static ColorPickerSlidersUI ColorPickerSlidersUI;
         public static RoundController RoundController;
-        public static GuessImageUI GuessImageUI;
+        public static OctopusUI OctopusUI;
         public static TargetFinalImageUI TargetFinalImageUI;
         public static ScoreUI ScoreUI;
     }
