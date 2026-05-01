@@ -311,13 +311,14 @@ GameObject:
   m_Component:
   - component: {fileID: 684796513}
   - component: {fileID: 684796514}
+  - component: {fileID: 684796515}
   m_Layer: 0
   m_Name: Octopus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &684796513
 Transform:
   m_ObjectHideFlags: 0
@@ -392,6 +393,77 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &684796515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 684796512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f748c3212d7d3424fb99b479b157ba12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloatingScaleAnimator
+  floatingTarget: {fileID: 684796513}
+  scalingTarget: {fileID: 36121508}
+  floatDistance: 0.25
+  cycleDuration: 2
+  scaleAmount: 0.08
+  playOnUnscaledTime: 0
+--- !u!1 &773705803
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 773705804}
+  - component: {fileID: 773705805}
+  m_Layer: 0
+  m_Name: BubblePoint (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &773705804
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 773705803}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.6, y: 0.4, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1294951190}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &773705805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 773705803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66c3a4177ad75024f8ea1427862b57db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloatingSpriteSpawner
+  firstSprite: {fileID: 913275039, guid: 13527b728baa26443b4d99786355939b, type: 3}
+  secondSprite: {fileID: 414334934, guid: 13527b728baa26443b4d99786355939b, type: 3}
+  thirdSprite: {fileID: 1293840366, guid: 13527b728baa26443b4d99786355939b, type: 3}
+  spawnOffset: {x: 0, y: 0, z: 0}
+  spawnInterval: 0.6
+  randomIntervalOffset: 0.5
+  moveSpeed: 1
+  lifetime: 1.8
+  randomHorizontalOffsetRange: {x: -0.2, y: 0.2}
 --- !u!1 &814038938
 GameObject:
   m_ObjectHideFlags: 0
@@ -483,6 +555,59 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1 &940553545
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 940553546}
+  - component: {fileID: 940553547}
+  m_Layer: 0
+  m_Name: BubblePoint (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &940553546
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 940553545}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.05, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1294951190}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &940553547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 940553545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66c3a4177ad75024f8ea1427862b57db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloatingSpriteSpawner
+  firstSprite: {fileID: 913275039, guid: 13527b728baa26443b4d99786355939b, type: 3}
+  secondSprite: {fileID: 414334934, guid: 13527b728baa26443b4d99786355939b, type: 3}
+  thirdSprite: {fileID: 1293840366, guid: 13527b728baa26443b4d99786355939b, type: 3}
+  spawnOffset: {x: 0, y: 0, z: 0}
+  spawnInterval: 0.6
+  randomIntervalOffset: 0.5
+  moveSpeed: 1
+  lifetime: 1.5
+  randomHorizontalOffsetRange: {x: -0.2, y: 0.2}
 --- !u!1 &1000952005
 GameObject:
   m_ObjectHideFlags: 0
@@ -772,7 +897,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1253975804
 SpriteRenderer:
   serializedVersion: 2
@@ -976,8 +1101,118 @@ Transform:
   - {fileID: 1289487500}
   - {fileID: 684796513}
   - {fileID: 36121508}
+  - {fileID: 1402577612}
+  - {fileID: 773705804}
+  - {fileID: 1977830607}
+  - {fileID: 940553546}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1402577611
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1402577612}
+  - component: {fileID: 1402577613}
+  m_Layer: 0
+  m_Name: BubblePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1402577612
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1402577611}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.5, y: 0.4, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1294951190}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1402577613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1402577611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66c3a4177ad75024f8ea1427862b57db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloatingSpriteSpawner
+  firstSprite: {fileID: 913275039, guid: 13527b728baa26443b4d99786355939b, type: 3}
+  secondSprite: {fileID: 414334934, guid: 13527b728baa26443b4d99786355939b, type: 3}
+  thirdSprite: {fileID: 1293840366, guid: 13527b728baa26443b4d99786355939b, type: 3}
+  spawnOffset: {x: 0, y: 0, z: 0}
+  spawnInterval: 0.6
+  randomIntervalOffset: 0.5
+  moveSpeed: 1
+  lifetime: 1.8
+  randomHorizontalOffsetRange: {x: -0.2, y: 0.2}
+--- !u!1 &1977830606
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1977830607}
+  - component: {fileID: 1977830608}
+  m_Layer: 0
+  m_Name: BubblePoint (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1977830607
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1977830606}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.5, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1294951190}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1977830608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1977830606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66c3a4177ad75024f8ea1427862b57db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloatingSpriteSpawner
+  firstSprite: {fileID: 913275039, guid: 13527b728baa26443b4d99786355939b, type: 3}
+  secondSprite: {fileID: 414334934, guid: 13527b728baa26443b4d99786355939b, type: 3}
+  thirdSprite: {fileID: 1293840366, guid: 13527b728baa26443b4d99786355939b, type: 3}
+  spawnOffset: {x: 0, y: 0, z: 0}
+  spawnInterval: 0.6
+  randomIntervalOffset: 0.5
+  moveSpeed: 1
+  lifetime: 1.5
+  randomHorizontalOffsetRange: {x: -0.2, y: 0.2}
 --- !u!1 &2028528657
 GameObject:
   m_ObjectHideFlags: 0
