@@ -310,6 +310,50 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: WhiteBottom
+      rect:
+        serializedVersion: 2
+        x: 963
+        y: 1
+        width: 480
+        height: 270
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ec407c6b3e847440aa4ee8dd1ada865
+      internalID: 1721158717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bottom Shadow
+      rect:
+        serializedVersion: 2
+        x: 963
+        y: 272
+        width: 480
+        height: 270
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9dc72d90afaeb04f89a8f3984746a25
+      internalID: 1538622154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -328,6 +372,7 @@ TextureImporter:
     nameFileIdTable:
       Back: -1828518738
       Back1: -8896702447141653487
+      Bottom Shadow: 1538622154
       Bubbl: 913275039
       Bubble: 414334934
       Bubble3: 1293840366
@@ -335,6 +380,7 @@ TextureImporter:
       Ocean: -1068763706
       Octopus: 1799111511
       Shadow: -2028308535
+      WhiteBottom: 1721158717
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
