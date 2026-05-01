@@ -76,7 +76,7 @@ namespace Mimic.Scripts.UI
                 brightnessSlider.value
             );
 
-            G.GuessImageUI?.SetColor(CurrentColor);
+            G.OctopusUI?.SetColor(CurrentColor);
 
             huePreview.color = Color.HSVToRGB(hueSlider.value, 1f, 1f);
 

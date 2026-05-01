@@ -6,6 +6,7 @@ namespace Mimic.Scripts
 {
     public enum RoundState
     {
+        None,
         Showing,
         Guessing,
         Calculating
