@@ -3,14 +3,17 @@ using UnityEngine.UI;
 
 namespace Mimic.Scripts
 {
-    public class ContinueButtonUI : MonoBehaviour
+    public class TargetImageUI : MonoBehaviour
     {
-        [SerializeField] Button button;
+        [SerializeField] Image image;
+
+        void Awake()
+        {
+            image.gameObject.SetActive(false);
+        }
 
         void Start()
         {
-            button.gameObject.SetActive(false);
-            button.onClick.AddListener(OnClick);
             G.RoundController.OnRoundStateChanged += HandleRoundStateChanged;
         }
         void OnDestroy()
@@ -23,12 +26,7 @@ namespace Mimic.Scripts
 
         void HandleRoundStateChanged(RoundState state)
         {
-            button.gameObject.SetActive(state == RoundState.Calculating);
-        }
-
-        void OnClick()
-        {
-            G.RoundController.Continue();
+            image.gameObject.SetActive(state == RoundState.Showing);
         }
     }
 }
