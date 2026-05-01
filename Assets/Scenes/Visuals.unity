@@ -149,7 +149,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1289487500}
+  m_Father: {fileID: 1203506891}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &36121509
 SpriteRenderer:
@@ -240,7 +240,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1289487500}
+  m_Father: {fileID: 1203506891}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &99887468
 SpriteRenderer:
@@ -423,7 +423,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1289487500}
+  m_Father: {fileID: 1203506891}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &684796514
 SpriteRenderer:
@@ -532,7 +532,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1289487500}
+  m_Father: {fileID: 1203506891}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &773705805
 MonoBehaviour:
@@ -676,7 +676,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1289487500}
+  m_Father: {fileID: 1203506891}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &940553547
 MonoBehaviour:
@@ -972,6 +972,47 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1 &1203506890
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1203506891}
+  m_Layer: 0
+  m_Name: Front
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1203506891
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1203506890}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1379467416}
+  - {fileID: 684796513}
+  - {fileID: 36121508}
+  - {fileID: 1402577612}
+  - {fileID: 773705804}
+  - {fileID: 1977830607}
+  - {fileID: 940553546}
+  - {fileID: 99887467}
+  - {fileID: 1810475666}
+  - {fileID: 1289487500}
+  m_Father: {fileID: 1294951190}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1253975803
 GameObject:
   m_ObjectHideFlags: 0
@@ -1095,17 +1136,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1379467416}
-  - {fileID: 684796513}
-  - {fileID: 36121508}
-  - {fileID: 1402577612}
-  - {fileID: 773705804}
-  - {fileID: 1977830607}
-  - {fileID: 940553546}
-  - {fileID: 99887467}
-  - {fileID: 1810475666}
-  m_Father: {fileID: 1294951190}
+  m_Children: []
+  m_Father: {fileID: 1203506891}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1289487501
 SpriteRenderer:
@@ -1199,7 +1231,7 @@ Transform:
   - {fileID: 1000952007}
   - {fileID: 1092400902}
   - {fileID: 2061365711}
-  - {fileID: 1289487500}
+  - {fileID: 1203506891}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1294951191
@@ -1216,7 +1248,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ParallaxMouseCamera
   firstLayer: {fileID: 1092400902}
   secondLayer: {fileID: 2061365711}
-  thirdLayer: {fileID: 1289487500}
+  thirdLayer: {fileID: 1203506891}
   targetCamera: {fileID: 2028528659}
   cameraOffsetX: 0.2
   cameraOffsetY: 0.2
@@ -1254,7 +1286,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1289487500}
+  m_Father: {fileID: 1203506891}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1379467417
 SpriteRenderer:
@@ -1345,7 +1377,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1289487500}
+  m_Father: {fileID: 1203506891}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1402577613
 MonoBehaviour:
@@ -1398,7 +1430,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1289487500}
+  m_Father: {fileID: 1203506891}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1810475667
 SpriteRenderer:
@@ -1489,7 +1521,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1289487500}
+  m_Father: {fileID: 1203506891}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1977830608
 MonoBehaviour:
