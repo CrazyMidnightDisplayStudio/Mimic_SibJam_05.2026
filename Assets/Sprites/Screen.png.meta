@@ -319,7 +319,7 @@ TextureImporter:
         width: 480
         height: 270
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -341,7 +341,7 @@ TextureImporter:
         width: 480
         height: 270
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -350,6 +350,28 @@ TextureImporter:
       bones: []
       spriteID: d9dc72d90afaeb04f89a8f3984746a25
       internalID: 1538622154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeaPlant
+      rect:
+        serializedVersion: 2
+        x: 963
+        y: 543
+        width: 480
+        height: 270
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41a75fa96d2f2144797bf3f13e49a826
+      internalID: -1671837318
       vertices: []
       indices: 
       edges: []
@@ -379,6 +401,7 @@ TextureImporter:
       Front: -312393994
       Ocean: -1068763706
       Octopus: 1799111511
+      SeaPlant: -1671837318
       Shadow: -2028308535
       WhiteBottom: 1721158717
   mipmapLimitGroupName: 
