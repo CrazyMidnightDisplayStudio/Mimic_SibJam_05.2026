@@ -1,17 +1,28 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 
 namespace Mimic.Scripts
 {
     public class GameManager : MonoBehaviour
     {
         public System.Action<float> OnScoreChanged;
+        public System.Action<Color> OnTargetColorChanged;
 
         [SerializeField] GameSettings settings;
-        [SerializeField] Image targetPreview;
+        [SerializeField] SpriteRenderer targetPreview;
 
-        Color _targetColor;
-        float _score;
+        private Color _targetColor;
+
+        public float Score { get; private set; }
+
+        public Color TargetColor
+        {
+            get => _targetColor;
+            private set
+            {
+                _targetColor = value;
+                OnTargetColorChanged?.Invoke(value);
+            }
+        }
 
         void Awake()
         {
@@ -42,37 +53,37 @@ namespace Mimic.Scripts
             {
                 case RoundState.Showing:
                     RestartRound();
-                    G.BackgroundSheetCrop.FadeOut(settings.showTime);
+                    G.BackgroundSheetCrop.FadeIn(settings.showTime, Vector2.left);
                     break;
 
                 case RoundState.Guessing:
-                    G.ColorPickerSlidersUI.SetInteractable(true);
+                    G.ColorPickerUI.SetInteractable(true);
                     break;
 
                 case RoundState.Calculating:
-                    G.ColorPickerSlidersUI.SetInteractable(false);
+                    G.ColorPickerUI.SetInteractable(false);
+                    G.BackgroundSheetCrop.FadeOut(2f, Vector2.left);
                     CalculateRoundScore();
-                    OnScoreChanged?.Invoke(_score);
+                    OnScoreChanged?.Invoke(Score);
                     break;
             }
         }
 
         void RestartRound()
         {
-            _targetColor = settings.GenerateTargetColor();
-            targetPreview.color = _targetColor;
-            G.TargetFinalImageUI.SetColor(_targetColor);
+            TargetColor = settings.GenerateTargetColor();
+            targetPreview.color = TargetColor;
 
-            G.ColorPickerSlidersUI.ResetPicker();
+            G.ColorPickerUI.ResetPicker();
         }
 
         void CalculateRoundScore()
         {
-            Color guessColor = G.ColorPickerSlidersUI.CurrentColor;
+            Color guessColor = G.ColorPickerUI.CurrentColor;
 
-            _score = Utils.CalculateScore(_targetColor, guessColor);
+            Score = Utils.CalculateScore(TargetColor, guessColor);
 
-            Debug.Log($"Score: {_score:0}");
+            Debug.Log($"Score: {Score:0}");
         }
     }
 }

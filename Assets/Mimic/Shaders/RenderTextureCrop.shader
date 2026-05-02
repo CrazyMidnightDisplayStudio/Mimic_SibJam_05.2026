@@ -4,10 +4,10 @@ Shader "Custom/RenderTextureCropSheet"
     {
         _MainTex ("Texture", 2D) = "white" {}
 
-        _Progress ("Progress", Range(-0.5, 1.5)) = 0
-        _Direction ("Direction", Float) = 0
+        _Edge ("Edge", Range(-2, 2)) = -1
+        _Direction ("Direction", Vector) = (1, 0, 0, 0)
 
-        _Softness ("Softness", Range(0, 0.2)) = 0.03
+        _Softness ("Softness", Range(0, 0.3)) = 0.03
         _Tilt ("Tilt", Range(-1, 1)) = 0.25
     }
 
@@ -33,8 +33,8 @@ Shader "Custom/RenderTextureCropSheet"
 
             sampler2D _MainTex;
 
-            float _Progress;
-            float _Direction;
+            float _Edge;
+            float4 _Direction;
             float _Softness;
             float _Tilt;
 
@@ -62,25 +62,30 @@ Shader "Custom/RenderTextureCropSheet"
             {
                 fixed4 col = tex2D(_MainTex, i.uv);
 
-                float centeredY = i.uv.y - 0.5;
-                float edge = _Progress + centeredY * _Tilt;
+                float2 dir = _Direction.xy;
+
+                if (length(dir) < 0.001)
+                    dir = float2(1, 0);
+
+                dir = normalize(dir);
+
+                float2 perp = float2(-dir.y, dir.x);
+                float2 centeredUV = i.uv - 0.5;
+
+                float coord = dot(centeredUV, dir) - dot(centeredUV, perp) * _Tilt;
 
                 float alpha;
 
-                if (_Direction < 0.5)
+                if (_Softness <= 0.0001)
                 {
-                    alpha = 1.0 - smoothstep(
-                        edge - _Softness,
-                        edge + _Softness,
-                        i.uv.x
-                    );
+                    alpha = coord <= _Edge ? 1.0 : 0.0;
                 }
                 else
                 {
-                    alpha = smoothstep(
-                        edge - _Softness,
-                        edge + _Softness,
-                        i.uv.x
+                    alpha = 1.0 - smoothstep(
+                        _Edge - _Softness,
+                        _Edge + _Softness,
+                        coord
                     );
                 }
 

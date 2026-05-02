@@ -4,19 +4,17 @@ namespace Mimic.Scripts.UI
 {
     public class OctopusUI : MonoBehaviour
     {
+        [SerializeField] float fallingShadowAlpha = 0.5f;
         [SerializeField] GameObject uiRoot;
 
         [SerializeField] SpriteRenderer mainImage;
         [SerializeField] SpriteRenderer shadowsImage;
+        [SerializeField] SpriteRenderer fallingShadow;
         [SerializeField] SpriteRenderer highlightsImage;
-
-        void Awake()
-        {
-            G.OctopusUI = this;
-        }
 
         void Start()
         {
+            G.ColorPickerUI.OnColorChanged += HandleColorChanged;
             G.RoundController.OnRoundStateChanged += HandleRoundStateChanged;
             uiRoot.SetActive(false);
         }
@@ -26,6 +24,15 @@ namespace Mimic.Scripts.UI
             {
                 G.RoundController.OnRoundStateChanged -= HandleRoundStateChanged;
             }
+
+            if (G.ColorPickerUI != null)
+            {
+                G.ColorPickerUI.OnColorChanged -= HandleColorChanged;
+            }
+        }
+        void HandleColorChanged(Color color)
+        {
+            SetColor(color);
         }
 
         public void SetColor(Color color)
@@ -41,7 +48,12 @@ namespace Mimic.Scripts.UI
             Color.RGBToHSV(color, out float h, out float s, out float v);
             float shadowS = s * 0.6f;
             float shadowV = v * 0.4f;
-            shadowsImage.color = Color.HSVToRGB(h, shadowS, shadowV);
+            Color shadowColor = Color.HSVToRGB(h, shadowS, shadowV);
+
+            shadowsImage.color = shadowColor;
+            Color falling = shadowColor;
+            falling.a = fallingShadowAlpha;
+            fallingShadow.color = falling;
         }
 
         private void SetHighlightsColor(Color color)

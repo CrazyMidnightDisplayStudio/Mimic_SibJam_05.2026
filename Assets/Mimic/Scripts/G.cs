@@ -1,14 +1,13 @@
 ﻿using Mimic.Scripts.UI;
+using Mimic.Scripts.UI.ColorPicker;
 
 namespace Mimic.Scripts
 {
     public static class G
     {
         public static GameManager GameManager;
-        public static ColorPickerSlidersUI ColorPickerSlidersUI;
+        public static ColorPickerUI ColorPickerUI;
         public static RoundController RoundController;
-        public static OctopusUI OctopusUI;
-        public static TargetFinalImageUI TargetFinalImageUI;
         public static ScoreUI ScoreUI;
         public static BackgroundSheetCrop BackgroundSheetCrop;
     }
