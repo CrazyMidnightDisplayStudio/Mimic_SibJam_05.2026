@@ -14,7 +14,7 @@ namespace Mimic.Scripts.UI.ColorPicker
 
         public Color CurrentColor { get; private set; }
 
-        public bool Interactable { get; private set; }
+        public bool Interactable { get; private set; } = true;
 
         public event Action<float> OnHueChanged;
         public event Action<float> OnSaturationChanged;
@@ -36,6 +36,7 @@ namespace Mimic.Scripts.UI.ColorPicker
         void Start()
         {
             NotifyAll();
+            SetInteractable(false);
         }
 
         void OnDestroy()
@@ -49,6 +50,7 @@ namespace Mimic.Scripts.UI.ColorPicker
             if (Interactable == value)
                 return;
 
+            Debug.Log($"{nameof(ColorPickerUI)} set interactable: {value}");
             Interactable = value;
             slidersRoot.SetActive(value);
             OnInteractableChanged?.Invoke(value);

@@ -43,5 +43,11 @@ namespace Mimic.Scripts
 
             return Mathf.Clamp01(similarity) * 100f;
         }
+        
+        public static string ColorToHex(Color color)
+        {
+            Color32 c = color;
+            return $"#{c.r:X2}{c.g:X2}{c.b:X2}";
+        }
     }
 }
