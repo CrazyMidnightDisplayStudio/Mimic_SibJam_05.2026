@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GDSettings
   m_EditorClassIdentifier: Assembly-CSharp::Mimic.Scripts.GameSettings
   showTime: 5
-  guessTime: 10
-  minSaturation: 0.4
-  minBrightness: 0.4
-  successThreshold: 0.85
+  guessTime: 5
+  minSaturation: 0.1
+  minBrightness: 0.1
+  successThreshold: 0.6

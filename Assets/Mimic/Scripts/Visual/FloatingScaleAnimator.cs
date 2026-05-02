@@ -4,10 +4,10 @@ public sealed class FloatingScaleAnimator : MonoBehaviour
 {
     [SerializeField] private Transform floatingTarget;
     [SerializeField] private Transform scalingTarget;
-    [SerializeField] private float floatDistance = 0.25f;
     [SerializeField] private float cycleDuration = 2f;
     [SerializeField] private float scaleAmount = 0.08f;
     [SerializeField] private bool playOnUnscaledTime;
+    public float FloatDistance = 0.25f;
 
     private Vector3 _floatingStartPosition;
     private Vector3 _scalingStartScale;
@@ -59,7 +59,7 @@ public sealed class FloatingScaleAnimator : MonoBehaviour
         float normalizedTime = _time / cycleDuration;
         float wave = Mathf.Sin(normalizedTime * Mathf.PI * 2f);
 
-        floatingTarget.localPosition = _floatingStartPosition + Vector3.up * (wave * floatDistance);
+        floatingTarget.localPosition = _floatingStartPosition + Vector3.up * (wave * FloatDistance);
 
         float inverseWave = -wave;
         float scaleMultiplier = 1f + inverseWave * scaleAmount;
