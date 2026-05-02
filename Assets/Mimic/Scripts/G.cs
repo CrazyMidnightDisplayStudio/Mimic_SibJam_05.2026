@@ -10,5 +10,6 @@ namespace Mimic.Scripts
         public static OctopusUI OctopusUI;
         public static TargetFinalImageUI TargetFinalImageUI;
         public static ScoreUI ScoreUI;
+        public static BackgroundSheetCrop BackgroundSheetCrop;
     }
 }

@@ -12,7 +12,7 @@ namespace Mimic.Scripts
 
         Color _targetColor;
         float _score;
-        
+
         void Awake()
         {
             G.GameManager = this;
@@ -42,6 +42,7 @@ namespace Mimic.Scripts
             {
                 case RoundState.Showing:
                     RestartRound();
+                    G.BackgroundSheetCrop.FadeOut(settings.showTime);
                     break;
 
                 case RoundState.Guessing:
