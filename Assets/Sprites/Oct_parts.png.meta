@@ -259,6 +259,138 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Mask2
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 192
+        width: 104
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76cc2196cf1241a41877547bea47954f
+      internalID: -1080193668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainColor2
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 192
+        width: 104
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63b024c4cbb2b8f43823b582700c1adf
+      internalID: 1874046786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pattern2
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 192
+        width: 104
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 326bb1e8fef481e459cc679b3f83fbbf
+      internalID: 529700618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Highlight2
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 85
+        width: 104
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b15e5cbfb505db14f9b29b5a14618e9d
+      internalID: -459971090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shadow2
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 85
+        width: 104
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21c24e0a5e7afb2489620ff5d856e5de
+      internalID: -1472944878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Outline2
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 85
+        width: 104
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7bbf4fdfbc1dacb44b22c08e843602cc
+      internalID: 1156318060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -274,10 +406,16 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       Eyes: -4092827149793003223
+      Highlight2: -459971090
       Higlight: -4633723597942826024
       Main Color: 239968027330775598
+      MainColor2: 1874046786
+      Mask2: -1080193668
+      Outline2: 1156318060
       Pattern: 2426689993232005695
+      Pattern2: 529700618
       Shadow: -620494656726280249
+      Shadow2: -1472944878
       Trafaret: 5096166970376104629
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
