@@ -403,6 +403,7 @@ GameObject:
   - component: {fileID: 684796513}
   - component: {fileID: 684796514}
   - component: {fileID: 684796515}
+  - component: {fileID: 684796516}
   m_Layer: 0
   m_Name: Octopus
   m_TagString: Untagged
@@ -501,6 +502,23 @@ MonoBehaviour:
   floatDistance: 0.25
   cycleDuration: 2
   scaleAmount: 0.08
+  playOnUnscaledTime: 0
+--- !u!114 &684796516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 684796512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b008ce5b2482ac47a96543a9481de14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SquashAnimator
+  target: {fileID: 684796513}
+  squashAmount: 0.03
+  cycleDuration: 1.6
+  affectWidth: 1
   playOnUnscaledTime: 0
 --- !u!1 &773705803
 GameObject:
