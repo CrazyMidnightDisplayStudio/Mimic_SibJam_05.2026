@@ -42,11 +42,11 @@ Material:
     m_Ints: []
     m_Floats:
     - _Direction: 0
-    - _Edge: -0.95149994
+    - _Edge: -0.92499995
     - _EnableExternalAlpha: 0
     - _Progress: -0.35
     - _Softness: 0.03
-    - _Tilt: 0.203
+    - _Tilt: 0.15
     - _ZWrite: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}

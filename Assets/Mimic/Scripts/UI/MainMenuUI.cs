@@ -8,9 +8,15 @@ namespace Mimic.Scripts.UI
     {
         [SerializeField] GameObject root;
 
-        [SerializeField] TMP_InputField nameInput;
-        [SerializeField] Button saveNameButton;
+        [Header("Name")]
+        [SerializeField] TMP_Text namePreviewText;
+        [SerializeField] Button changeNameButton;
+
+        [Header("Buttons")]
         [SerializeField] Button playButton;
+
+        string _selectedName;
+        bool _nameAlreadySaved;
 
         void Awake()
         {
@@ -18,13 +24,13 @@ namespace Mimic.Scripts.UI
 
             root.SetActive(false);
 
-            saveNameButton.onClick.AddListener(SaveName);
+            changeNameButton.onClick.AddListener(ChangeName);
             playButton.onClick.AddListener(Play);
         }
 
         void OnDestroy()
         {
-            saveNameButton.onClick.RemoveListener(SaveName);
+            changeNameButton.onClick.RemoveListener(ChangeName);
             playButton.onClick.RemoveListener(Play);
 
             if (G.MainMenuUI == this)
@@ -35,15 +41,20 @@ namespace Mimic.Scripts.UI
         {
             root.SetActive(true);
 
-            bool hasName = !string.IsNullOrEmpty(G.LeaderboardService.CurrentPlayerName);
+            string savedName = G.LeaderboardService.CurrentPlayerName;
+            _nameAlreadySaved = !string.IsNullOrEmpty(savedName);
 
-            nameInput.gameObject.SetActive(!hasName);
-            saveNameButton.gameObject.SetActive(!hasName);
+            if (_nameAlreadySaved)
+                _selectedName = savedName;
+            else
+                _selectedName = Utils.GetRandomName();
 
-            if (hasName)
-                nameInput.text = G.LeaderboardService.CurrentPlayerName;
+            UpdateNameView();
 
-            // показываем лидерборд
+            changeNameButton.gameObject.SetActive(!_nameAlreadySaved);
+            namePreviewText.gameObject.SetActive(!_nameAlreadySaved);
+            playButton.interactable = true;
+
             G.LeaderboardUI.Show();
         }
 
@@ -52,27 +63,47 @@ namespace Mimic.Scripts.UI
             root.SetActive(false);
         }
 
-        void SaveName()
+        void ChangeName()
         {
-            saveNameButton.interactable = false;
+            if (_nameAlreadySaved)
+                return;
 
-            G.LeaderboardService.SetPlayerName(nameInput.text, () =>
-            {
-                saveNameButton.interactable = true;
-
-                nameInput.gameObject.SetActive(false);
-                saveNameButton.gameObject.SetActive(false);
-
-                G.LeaderboardUI.Show(); // обновить таблицу
-            });
+            _selectedName = Utils.GetRandomName();
+            UpdateNameView();
         }
 
         void Play()
         {
+            playButton.interactable = false;
+            changeNameButton.interactable = false;
+
+            if (_nameAlreadySaved)
+            {
+                StartGame();
+                return;
+            }
+
+            G.LeaderboardService.SetPlayerName(_selectedName, () =>
+            {
+                _nameAlreadySaved = true;
+                StartGame();
+            });
+        }
+
+        void StartGame()
+        {
             Hide();
             G.LeaderboardUI.Hide();
 
+            playButton.interactable = true;
+            changeNameButton.interactable = true;
+
             G.RoundController.Play();
+        }
+
+        void UpdateNameView()
+        {
+            namePreviewText.text = _selectedName;
         }
     }
 }

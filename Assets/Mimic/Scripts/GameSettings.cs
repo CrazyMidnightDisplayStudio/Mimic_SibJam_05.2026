@@ -10,8 +10,13 @@ namespace Mimic.Scripts
         public float guessTime = 10f;
 
         [Header("Color Generation")]
+        [Header("Saturation")]
         [Range(0f, 1f)] public float minSaturation = 0.7f;
+        [Range(0f, 1f)] public float maxSaturation = 1f;
+
+        [Header("Brightness")]
         [Range(0f, 1f)] public float minBrightness = 0.7f;
+        [Range(0f, 1f)] public float maxBrightness = 1f;
 
         [Header("Scoring")]
         public float successThreshold = 0.85f;
@@ -20,8 +25,8 @@ namespace Mimic.Scripts
         {
             return Random.ColorHSV(
                 0f, 1f,
-                minSaturation, 1f,
-                minBrightness, 1f
+                minSaturation, maxSaturation,
+                minBrightness, maxBrightness
             );
         }
     }

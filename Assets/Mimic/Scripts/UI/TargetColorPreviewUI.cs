@@ -22,8 +22,8 @@ namespace Mimic.Scripts.UI
         void SetShadowColor(Color color)
         {
             Color.RGBToHSV(color, out float h, out float s, out float v);
-            float shadowS = s * 0.6f;
-            float shadowV = v * 0.4f;
+            float shadowS = s * 0.8f;
+            float shadowV = v * 0.6f;
             shadowsPreview.color = Color.HSVToRGB(h, shadowS, shadowV);
         }
     }

@@ -58,7 +58,11 @@ namespace Mimic.Scripts.UI
 
         IEnumerator FinalFlow(int score, int previousBest, PlayerLeaderboardEntry previousEntry)
         {
-            yield return RollScore(score, previousBest);
+            int effectiveBest = previousEntry == null
+                ? score
+                : Mathf.Max(previousBest, score);
+
+            yield return RollScore(score, effectiveBest);
 
             G.LeaderboardService.SubmitCurrentPlayerScoreIfBetter(score,
                 (improved, previousEntry, newEntry) =>
@@ -86,16 +90,12 @@ namespace Mimic.Scripts.UI
                 int shownScore = Mathf.RoundToInt(Mathf.Lerp(0, score, curvedT));
                 int shownBest = Mathf.RoundToInt(Mathf.Lerp(0, previousBest, curvedT));
 
-                scoreText.text =
-                    $"Score: {shownScore}\n" +
-                    $"Best: {shownBest}";
+                scoreText.text = $"Score: {shownScore} | Your best: {shownBest}";
 
                 yield return null;
             }
 
-            scoreText.text =
-                $"Score: {score}\n" +
-                $"Best: {previousBest}";
+            scoreText.text = $"Score: {score} | Your best: {previousBest}";
         }
 
         void PlayAgain()

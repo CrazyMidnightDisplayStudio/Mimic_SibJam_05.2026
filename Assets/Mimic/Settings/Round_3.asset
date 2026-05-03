@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7b3d672e007c495fa3d5fea123c44987, type: 3}
-  m_Name: Round_1
+  m_Name: Round_3
   m_EditorClassIdentifier: Assembly-CSharp::Mimic.Scripts.GameSettings
   showTime: 5
   guessTime: 5
-  minSaturation: 0.6
-  maxSaturation: 0.95
-  minBrightness: 0.6
-  maxBrightness: 0.95
+  minSaturation: 0.3
+  maxSaturation: 0.7
+  minBrightness: 0.3
+  maxBrightness: 0.6
   successThreshold: 0

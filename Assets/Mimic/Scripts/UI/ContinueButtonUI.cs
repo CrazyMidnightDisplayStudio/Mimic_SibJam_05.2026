@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Mimic.Scripts
@@ -6,6 +7,7 @@ namespace Mimic.Scripts
     public class ContinueButtonUI : MonoBehaviour
     {
         [SerializeField] Button button;
+        [SerializeField] TMP_Text buttonText;
 
         void Start()
         {
@@ -23,7 +25,15 @@ namespace Mimic.Scripts
 
         void HandleRoundStateChanged(RoundState state)
         {
-            button.gameObject.SetActive(state == RoundState.Calculating);
+            bool isCalculating = state == RoundState.Calculating;
+            button.gameObject.SetActive(isCalculating);
+
+            if (!isCalculating)
+                return;
+
+            bool isLastRound = G.GameManager.CurrentRoundNumber >= G.GameManager.TotalRounds;
+
+            buttonText.text = isLastRound ? "Finish" : "Next";
         }
 
         void OnClick()

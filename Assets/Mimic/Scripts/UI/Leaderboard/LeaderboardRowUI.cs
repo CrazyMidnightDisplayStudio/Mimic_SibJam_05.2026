@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 namespace Mimic.Scripts.UI.Leaderboard
 {
+    [RequireComponent(typeof(RectTransform))]
     public class LeaderboardRowUI : MonoBehaviour
     {
         [SerializeField] TMP_Text placeText;
@@ -21,7 +22,16 @@ namespace Mimic.Scripts.UI.Leaderboard
 
         void Awake()
         {
-            _rect = GetComponent<RectTransform>();
+            EnsureInitialized();
+        }
+
+        void EnsureInitialized()
+        {
+            if (_rect == null)
+                _rect = GetComponent<RectTransform>();
+
+            if (canvasGroup == null)
+                canvasGroup = GetComponent<CanvasGroup>();
 
             if (canvasGroup == null)
                 canvasGroup = gameObject.AddComponent<CanvasGroup>();
@@ -29,6 +39,8 @@ namespace Mimic.Scripts.UI.Leaderboard
 
         public void SetData(int place, string playerName, int score, bool isCurrentPlayer)
         {
+            EnsureInitialized();
+
             placeText.text = place.ToString();
             nameText.text = playerName;
             scoreText.text = score.ToString();
@@ -39,11 +51,14 @@ namespace Mimic.Scripts.UI.Leaderboard
 
         public void SetPosition(Vector2 position)
         {
+            EnsureInitialized();
             _rect.anchoredPosition = position;
         }
 
         public IEnumerator AnimateFromBottom(Vector2 targetPosition, float fromOffsetY, float duration)
         {
+            EnsureInitialized();
+
             canvasGroup.alpha = 0f;
 
             Vector2 startPosition = targetPosition + Vector2.down * fromOffsetY;
@@ -53,13 +68,14 @@ namespace Mimic.Scripts.UI.Leaderboard
 
             while (time < duration)
             {
-                float t = time / duration;
+                time += Time.deltaTime;
+
+                float t = Mathf.Clamp01(time / duration);
                 t = EaseOutBack(t);
 
                 _rect.anchoredPosition = Vector2.LerpUnclamped(startPosition, targetPosition, t);
                 canvasGroup.alpha = Mathf.Clamp01(time / (duration * 0.5f));
 
-                time += Time.deltaTime;
                 yield return null;
             }
 
@@ -69,22 +85,26 @@ namespace Mimic.Scripts.UI.Leaderboard
 
         public IEnumerator MoveTo(Vector2 targetPosition, float duration)
         {
+            EnsureInitialized();
+
             Vector2 startPosition = _rect.anchoredPosition;
             float time = 0f;
 
             while (time < duration)
             {
-                float t = time / duration;
+                time += Time.deltaTime;
+
+                float t = Mathf.Clamp01(time / duration);
                 t = EaseOutCubic(t);
 
                 _rect.anchoredPosition = Vector2.Lerp(startPosition, targetPosition, t);
 
-                time += Time.deltaTime;
                 yield return null;
             }
 
             _rect.anchoredPosition = targetPosition;
         }
+
         public IEnumerator AnimatePlaceAndScore(
             int fromPlace,
             int toPlace,
@@ -99,7 +119,7 @@ namespace Mimic.Scripts.UI.Leaderboard
                 time += Time.deltaTime;
 
                 float t = Mathf.Clamp01(time / duration);
-                t = 1f - Mathf.Pow(1f - t, 3f);
+                t = EaseOutCubic(t);
 
                 int place = Mathf.RoundToInt(Mathf.Lerp(fromPlace, toPlace, t));
                 int score = Mathf.RoundToInt(Mathf.Lerp(fromScore, toScore, t));

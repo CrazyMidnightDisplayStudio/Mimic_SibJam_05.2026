@@ -11,12 +11,14 @@ namespace Mimic.Scripts.UI
         [SerializeField] SpriteRenderer shadowsImage;
         [SerializeField] SpriteRenderer fallingShadow;
         [SerializeField] SpriteRenderer highlightsImage;
+        [SerializeField] SpriteRenderer patternImage;
 
         void Start()
         {
             G.ColorPickerUI.OnColorChanged += HandleColorChanged;
             G.RoundController.OnRoundStateChanged += HandleRoundStateChanged;
             uiRoot.SetActive(false);
+            fallingShadow.gameObject.SetActive(false);
         }
         void OnDestroy()
         {
@@ -60,18 +62,17 @@ namespace Mimic.Scripts.UI
         {
             Color.RGBToHSV(color, out float h, out float s, out float v);
 
-            // Чем темнее основной цвет — тем слабее блик
-            float brightnessFactor = Mathf.Lerp(0.3f, 1f, v);
-
-            float lightS = s * 0.2f; // почти белый
-            float lightV = Mathf.Lerp(v, 1f, brightnessFactor);
+            float lightS = Mathf.Clamp01(s * 0.45f);
+            float lightV = Mathf.Clamp01(v + 0.35f);
 
             highlightsImage.color = Color.HSVToRGB(h, lightS, lightV);
+            patternImage.color = Color.HSVToRGB(h, lightS, lightV);
         }
 
         private void HandleRoundStateChanged(RoundState state)
         {
             uiRoot.SetActive(state != RoundState.Menu && state != RoundState.Initialization);
+            fallingShadow.gameObject.SetActive(state != RoundState.Menu && state != RoundState.Initialization);
         }
     }
 }

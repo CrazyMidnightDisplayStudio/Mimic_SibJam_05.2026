@@ -20,6 +20,7 @@ namespace Mimic.Scripts
         [SerializeField] AudioClip sharkClip;
         [SerializeField] AudioClip heartbeatClip;
         [SerializeField] AudioClip mimicriaAudioClip;
+        [SerializeField] AudioClip winClip;
 
 
         [SerializeField] AudioSource fadersAudioSource;
@@ -90,7 +91,7 @@ namespace Mimic.Scripts
 
                 case RoundState.Showing:
                     StartRound(CurrentSettings);
-                    PlayDelayed(fadersAudioSource, fadeOutClip, 1f);
+                    PlayDelayed(fadersAudioSource, fadeOutClip, 1.3f);
                     break;
 
                 case RoundState.Guessing:
@@ -105,6 +106,7 @@ namespace Mimic.Scripts
                     break;
 
                 case RoundState.Win:
+                    PlayDelayed(mimicriaAudioSource, winClip, 0.5f);
                     FinishGame(true);
                     break;
 
