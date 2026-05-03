@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -13,13 +14,14 @@ namespace Mimic.Scripts
 
         [SerializeField] List<GameSettings> roundSettings = new();
         [SerializeField] SpriteRenderer targetPreview;
-        
+
         [SerializeField] AudioClip fadeInClip;
         [SerializeField] AudioClip fadeOutClip;
         [SerializeField] AudioClip sharkClip;
         [SerializeField] AudioClip heartbeatClip;
-        
-        
+        [SerializeField] AudioClip mimicriaAudioClip;
+
+
         [SerializeField] AudioSource fadersAudioSource;
         [SerializeField] AudioSource sharkAudioSource;
         [SerializeField] AudioSource heartbeatAudioSource;
@@ -88,20 +90,18 @@ namespace Mimic.Scripts
 
                 case RoundState.Showing:
                     StartRound(CurrentSettings);
-                    //TODO
-                    fadersAudioSource.PlayOneShot(fadeOutClip);
+                    PlayDelayed(fadersAudioSource, fadeOutClip, 1f);
                     break;
 
                 case RoundState.Guessing:
                     StartGuessing(CurrentSettings);
                     heartbeatAudioSource.PlayOneShot(heartbeatClip);
-                    //TODO прибило ко дну
+                    PlayDelayed(mimicriaAudioSource, mimicriaAudioClip, CurrentSettings.guessTime / 2);
                     break;
 
                 case RoundState.Calculating:
                     FinishRound(CurrentSettings);
-                    //TODO
-                    fadersAudioSource.PlayOneShot(fadeInClip);
+                    PlayDelayed(fadersAudioSource, fadeInClip, 1.5f);
                     break;
 
                 case RoundState.Win:
@@ -223,6 +223,19 @@ namespace Mimic.Scripts
             OnScoreChanged?.Invoke(RoundScore);
             OnTotalScoreChanged?.Invoke(TotalScore);
             OnRoundChanged?.Invoke(CurrentRoundNumber, TotalRounds);
+        }
+
+        Coroutine PlayDelayed(AudioSource source, AudioClip clip, float delay)
+        {
+            return StartCoroutine(PlayDelayedRoutine(source, clip, delay));
+        }
+
+        IEnumerator PlayDelayedRoutine(AudioSource source, AudioClip clip, float delay)
+        {
+            yield return new WaitForSeconds(delay);
+
+            if (source != null && clip != null)
+                source.PlayOneShot(clip);
         }
     }
 }
