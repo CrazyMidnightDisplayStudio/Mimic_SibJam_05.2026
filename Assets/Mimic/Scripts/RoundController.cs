@@ -1,15 +1,17 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Mimic.Scripts
 {
     public enum RoundState
     {
-        None,
+        Initialization,
+        Menu,
         Showing,
         Guessing,
-        Calculating
+        Calculating,
+        Win,
+        Lose
     }
 
     public class RoundController : MonoBehaviour
@@ -17,30 +19,37 @@ namespace Mimic.Scripts
         public System.Action<float> OnTimerProgressChanged;
         public System.Action<RoundState> OnRoundStateChanged;
 
-        [SerializeField] GameSettings gameSettings;
-
         RoundState _state;
         Coroutine _loop;
         bool _continueRequested;
+        bool _gameFinished;
+        public RoundState CurrentState => _state;
 
         void Awake()
         {
             G.RoundController = this;
         }
+
+        void Start()
+        {
+            SetState(RoundState.Initialization);
+        }
+
         void OnDestroy()
         {
             if (G.RoundController == this)
-            {
                 G.RoundController = null;
-            }
+        }
+        
+        public void ShowMenu()
+        {
+            Stop();
+            SetState(RoundState.Menu);
         }
 
-        void Update()
+        public void Play()
         {
-            if (Keyboard.current?.rKey.wasPressedThisFrame == true)
-            {
-                StartRoundLoop();
-            }
+            StartRoundLoop();
         }
 
         public void Continue()
@@ -51,7 +60,19 @@ namespace Mimic.Scripts
         public void StartRoundLoop()
         {
             Stop();
+
+            _gameFinished = false;
+            _continueRequested = false;
+
+            G.GameManager.ResetGame();
+
             _loop = StartCoroutine(RoundLoop());
+        }
+
+        public void FinishGame(bool won)
+        {
+            _gameFinished = true;
+            SetState(won ? RoundState.Win : RoundState.Lose);
         }
 
         public void Stop()
@@ -63,26 +84,43 @@ namespace Mimic.Scripts
             }
 
             _continueRequested = false;
+            _gameFinished = false;
         }
 
         IEnumerator RoundLoop()
         {
-            while (true)
+            while (!_gameFinished)
             {
+                GameSettings settings = G.GameManager.CurrentSettings;
+
                 SetState(RoundState.Showing);
                 _continueRequested = false;
-                yield return WaitWithProgress(gameSettings.showTime);
+                yield return WaitWithProgress(settings.showTime);
 
                 SetState(RoundState.Guessing);
-                yield return WaitWithProgress(gameSettings.guessTime);
+                yield return WaitWithProgress(settings.guessTime);
 
                 SetState(RoundState.Calculating);
 
-                while (!_continueRequested)
-                {
+                _continueRequested = false;
+
+                while (!_continueRequested && !_gameFinished)
                     yield return null;
+
+                if (_gameFinished)
+                    break;
+
+                if (G.GameManager.GameFinished)
+                {
+                    FinishGame(G.GameManager.PlayerWon);
+                }
+                else
+                {
+                    G.GameManager.MoveToNextRound();
                 }
             }
+
+            _loop = null;
         }
 
         IEnumerator WaitWithProgress(float duration)

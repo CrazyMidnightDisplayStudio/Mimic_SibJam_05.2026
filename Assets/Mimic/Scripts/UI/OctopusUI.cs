@@ -71,7 +71,7 @@ namespace Mimic.Scripts.UI
 
         private void HandleRoundStateChanged(RoundState state)
         {
-            uiRoot.SetActive(state != RoundState.None);
+            uiRoot.SetActive(state != RoundState.Menu && state != RoundState.Initialization);
         }
     }
 }
