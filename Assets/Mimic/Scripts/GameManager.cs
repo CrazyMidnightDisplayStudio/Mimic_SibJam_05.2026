@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 namespace Mimic.Scripts
@@ -12,6 +13,17 @@ namespace Mimic.Scripts
 
         [SerializeField] List<GameSettings> roundSettings = new();
         [SerializeField] SpriteRenderer targetPreview;
+        
+        [SerializeField] AudioClip fadeInClip;
+        [SerializeField] AudioClip fadeOutClip;
+        [SerializeField] AudioClip sharkClip;
+        [SerializeField] AudioClip heartbeatClip;
+        
+        
+        [SerializeField] AudioSource fadersAudioSource;
+        [SerializeField] AudioSource sharkAudioSource;
+        [SerializeField] AudioSource heartbeatAudioSource;
+        [SerializeField] AudioSource mimicriaAudioSource;
 
         Color _targetColor;
         int _currentRoundIndex;
@@ -76,14 +88,20 @@ namespace Mimic.Scripts
 
                 case RoundState.Showing:
                     StartRound(CurrentSettings);
+                    //TODO
+                    fadersAudioSource.PlayOneShot(fadeOutClip);
                     break;
 
                 case RoundState.Guessing:
                     StartGuessing(CurrentSettings);
+                    heartbeatAudioSource.PlayOneShot(heartbeatClip);
+                    //TODO прибило ко дну
                     break;
 
                 case RoundState.Calculating:
                     FinishRound(CurrentSettings);
+                    //TODO
+                    fadersAudioSource.PlayOneShot(fadeInClip);
                     break;
 
                 case RoundState.Win:
@@ -145,7 +163,8 @@ namespace Mimic.Scripts
             OnScoreChanged?.Invoke(RoundScore);
             OnTotalScoreChanged?.Invoke(TotalScore);
 
-            G.SharkMover.StartMoving(5f);
+            G.SharkMover.StartMoving(3f);
+            sharkAudioSource.PlayOneShot(sharkClip);
 
             Debug.Log($"Round {CurrentRoundNumber}/{TotalRounds}: {RoundScore:0.00} | Total: {TotalScore:0.00}");
 

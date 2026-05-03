@@ -7,6 +7,7 @@ namespace Mimic.Scripts.UI
 
         void Start()
         {
+            HandleRoundStateChanged(RoundState.Initialization);
             if (G.RoundController)
             {
                 G.RoundController.OnRoundStateChanged += HandleRoundStateChanged;

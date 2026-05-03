@@ -1,0 +1,77 @@
+{
+    "version": 1,
+    "name": "mimic",
+    "maps": [
+        {
+            "name": "volume",
+            "id": "5fe729c5-1ade-4328-9cbe-ffb47c6cb782",
+            "actions": [
+                {
+                    "name": "Volume Down",
+                    "type": "Button",
+                    "id": "8b9105e3-ebe9-4d3d-8fc4-59b86ca21d91",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Volume Up",
+                    "type": "Button",
+                    "id": "c0fab730-f24c-45f8-b107-a716e276dadd",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "24b6d4f3-5e2f-4ab6-a3f6-6ade84ce8b95",
+                    "path": "<Keyboard>/minus",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Volume Down",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "aab7fce4-ec98-4a48-b545-06f82bf4a030",
+                    "path": "<Keyboard>/numpadMinus",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Volume Down",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6481fa4d-7e49-4ca9-a404-ffbc818e95e8",
+                    "path": "<Keyboard>/equals",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Volume Up",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "591427a8-1952-4d40-9d8e-1505f37b37b8",
+                    "path": "<Keyboard>/numpadPlus",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Volume Up",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
